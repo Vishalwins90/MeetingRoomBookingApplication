@@ -1,0 +1,70 @@
+<div id="booking" class="section">
+    <div class="col-md-4 col-md-pull-7" style="position: absolute;
+                margin-left: 401px;
+                top: 38px">
+        <div class="booking-form">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <mat-form-field appearance="fill" style="width: 350px;">
+                        <mat-label>Room Size</mat-label>
+                        <input matInput formControlName="Room">
+                    </mat-form-field>
+                    <span *ngIf="form.controls['Room'].hasError('required') && form.controls['Room'].touched"
+                        style="color: red;">Please
+                        Select Room Size</span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill" style="width: 150px;">
+                                <!-- <span class="form-label">Check out</span> -->
+                                <mat-label>Time From</mat-label>
+                                <input formControlName="Timefrom" matInput [ngxTimepicker]="picker">
+                                <ngx-material-timepicker #picker></ngx-material-timepicker>
+                            </mat-form-field>
+                            <span style="color: red;"
+                                *ngIf="form.controls['Timefrom'].hasError('required') && form.controls['Timefrom'].touched">Select
+                                start Time</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill" style="width: 150px;">
+                                <!-- <span class="form-label">Check out</span> -->
+                                <mat-label>Timer To</mat-label>
+                                <input matInput formControlName="TimeTo" [ngxTimepicker]="picker1">
+                                <ngx-material-timepicker #picker1></ngx-material-timepicker>
+                            </mat-form-field>
+                            <span style="color: red;"
+                                *ngIf="form.controls['TimeTo'].hasError('required') && form.controls['TimeTo'].touched">Select
+                                End Time</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill" style="width: 350px;">
+                                <mat-label>Select Date</mat-label>
+                                <input formControlName="Date" matInput [matDatepicker]="dp1">
+                                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                                <mat-datepicker #dp1></mat-datepicker>
+                            </mat-form-field>
+                            <span style="color: red;"
+                                *ngIf="form.controls['Date'].hasError('required') && form.controls['Date'].touched">Select
+                                Date</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-btn" style="margin-left: 119px">
+                    <button class="submit-btn" (click)="Submit()">Book Room</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="form-btn" style="position: absolute;
+                margin-left: 1087px;
+                top: 22px">
+        <button mat-raised-button color="warn" (click)="logout()">logout</button>
+    </div>
+</div>
