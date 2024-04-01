@@ -15,7 +15,7 @@ export class UnauthGuard implements CanActivate {
 
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let token = sessionStorage.getItem('id');
+    let token = sessionStorage.getItem('token');
     if (token) {
       debugger
        this.router.navigateByUrl('dashboard')

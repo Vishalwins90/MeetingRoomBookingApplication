@@ -24,6 +24,7 @@ export class LoginComponent implements AfterViewInit {
     google.accounts.id.initialize({
       client_id: '471180406582-pqfv2d35gqq908rsqoppju7onoi0i6un.apps.googleusercontent.com',
       callback: (res: any) => {
+      console.log(res)
         this.onGoogleSignIn(res);
       }
     }); 
@@ -36,6 +37,7 @@ export class LoginComponent implements AfterViewInit {
 
   onGoogleSignIn(response: any): void {
     if (response) {
+      debugger
       const payload = this.decodeToken(response.credential);
       this.logindataservice.googlogindata()
         .subscribe((data: any) => {
@@ -44,9 +46,8 @@ export class LoginComponent implements AfterViewInit {
           if (matchdata) {     
             sessionStorage.setItem('token', (matchdata.id));
             this.route.navigate(['dashboard']);
-            this.logindataservice.successMSG(" User login Successfull")
+            this.logindataservice.successMSG("User login Successfull")
           } else {
-            debugger
             this.logindataservice.errorMSG("user not found");
           }
         }, (error:any) => {
@@ -57,6 +58,7 @@ export class LoginComponent implements AfterViewInit {
   }
 
   decodeToken(token: any): any {
+    debugger
     return JSON.parse(atob(token.split(".")[1]));
   }
 }

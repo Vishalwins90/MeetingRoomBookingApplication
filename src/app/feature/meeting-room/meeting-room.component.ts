@@ -27,7 +27,7 @@ this.form=this.formbuilder.group({
 }
 
 logout(){
-  sessionStorage.removeItem('id')
+  sessionStorage.removeItem('token')
 this.route.navigateByUrl('login')
 
 }
