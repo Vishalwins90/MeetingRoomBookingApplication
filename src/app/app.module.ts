@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './core/guards/authguard.guard';
-import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
   GoogleLoginProvider,
-} from '@abacritt/angularx-social-login';
+  
+} from 'angularx-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr'
 import { UiModule } from './ui/ui.module';
@@ -35,23 +36,22 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
   ],
   providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '468510333915-k5a7qqub3u5kh3fa46kgc9jq3s3k238f.apps.googleusercontent.com'
-            )
-          },
-        ],
-        onError: (err:any) => {
-          console.error(err);
-        }
-      } as SocialAuthServiceConfig,
-    }
+    // {
+    //   provide: 'SocialAuthServiceConfig',
+    //   useValue: {
+    //     autoLogin: false,
+    //     providers: [
+    //       {
+    //         id: GoogleLoginProvider.PROVIDER_ID,
+    //         provider: new GoogleLoginProvider(
+    //           '516638409563-de9eukafmmim57rh4vd7v0r47ues3en3.apps.googleusercontent.com'
+    //         )
+    //       },
+       
+    //     ],
+       
+    //   } as SocialAuthServiceConfig,
+    // }
   ],
   bootstrap: [AppComponent]
 })

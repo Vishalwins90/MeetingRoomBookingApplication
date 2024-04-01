@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
-
+declare var gapi : any;
 @Injectable({
   providedIn: 'root'
 })
@@ -24,4 +24,7 @@ showError(message:any){
 postdata(data:any){
   return this.http.post(this.url,data)
 }
+
+
+
 }
