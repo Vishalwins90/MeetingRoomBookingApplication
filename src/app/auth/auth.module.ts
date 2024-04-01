@@ -5,6 +5,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { SocialLoginModule } from 'angularx-social-login';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { UiModule } from '../ui/ui.module';
 @NgModule({
   declarations: [
     LoginComponent
@@ -13,7 +15,14 @@ import { SocialLoginModule } from 'angularx-social-login';
     CommonModule,
     AuthRoutingModule,
     AppRoutingModule,
-    SocialLoginModule 
+    SocialLoginModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }), 
+    UiModule
+  ],
+  providers: [
+    ToastrService
   ]
 })
 export class AuthModule { }

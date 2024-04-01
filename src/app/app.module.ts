@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr'
 import { UiModule } from './ui/ui.module';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+// import { ToastService } from './core/Services/toast.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,10 +26,6 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
-    }),
-   
     SocialLoginModule,
     BrowserAnimationsModule,
     UiModule
@@ -52,6 +49,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
        
     //   } as SocialAuthServiceConfig,
     // }
+  
   ],
   bootstrap: [AppComponent]
 })
