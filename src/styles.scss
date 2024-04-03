@@ -12,10 +12,13 @@ body {
 
 .snackbar-success.mat-mdc-snack-bar-container .mdc-snackbar__surface {
     background-color: #28a745;
+
 }
 
 .snackbar-error.mat-mdc-snack-bar-container .mdc-snackbar__surface {
     background-color: #dc3545;
+    // margin-left: 502px;
+    // margin-top: 490px;
 }
 
 .snackbar-warning.mat-mdc-snack-bar-container .mdc-snackbar__surface {

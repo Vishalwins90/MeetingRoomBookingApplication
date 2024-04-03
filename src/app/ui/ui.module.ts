@@ -6,7 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 // import {MaterialModule} from '@angular/material';
 const modules = [
   MatButtonModule,
@@ -15,9 +16,9 @@ const modules = [
   MatRippleModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSnackBarModule
-
-   
+  MatSnackBarModule,
+  MatSelectModule,
+  MatTableModule
 
  
 ];

@@ -10,7 +10,8 @@ declare var gapi : any;
 })
 export class GoogleloginService {
 public url='http://localhost:3000/loginuserdata'
-
+public url2="http://localhost:3000/booking"
+public url3="http://localhost:3000/rooms"
 constructor(public router:Router,public http:HttpClient,public toastr:ToastrService, private snackBar:MatSnackBar){
 
 }
@@ -19,12 +20,20 @@ googlogindata(): any{
   return this.http.get(this.url)
 }
 
-showError(message:any){
-  this.toastr.clear(message)
+showSuccess(message:any){
+  this.toastr.success(message)
 }
 postdata(data:any){
-  return this.http.post(this.url,data)
+  return this.http.post(this.url2,data)
 }
+getroomdata(){
+  return this.http.get(this.url3)
+}
+Showerror(message:any){
+  this.toastr.error(message)
+}
+
+
 
 successMSG(msg:string) {
   this.snackBar.open(msg,'',{
@@ -33,14 +42,10 @@ successMSG(msg:string) {
 }
 errorMSG(msg:string, duration?:number) { 
   this.snackBar.open(msg,'',{
-    duration: duration ? duration : 3000, panelClass: ['snackbar-error']
+    duration: duration ? duration : 1000, panelClass: ['snackbar-error']
   });
 }
 
-warningMSG(msg:string) {
-  this.snackBar.open(msg,'',{
-    duration: 3000, panelClass: ['snackbar-warning']
-  });
-}
+
 
 }

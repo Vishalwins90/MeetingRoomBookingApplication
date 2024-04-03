@@ -9,13 +9,36 @@
       "id": "117722900884219405608",
       "firstName": "Vishal",
       "Email": "vishalwins08@gmail.com"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "1",
+      "size": "Large Room",
+      "TotallargeRoom": 10,
+      "LargeRoomAvailable": null,
+      "TotalSmallRoom": 20
     },
     {
-      "id": "fe1c",
-      "Room": "large",
-      "Timefrom": "11:21 AM",
-      "TimeTo": "1:15 AM",
-      "Date": "2024-03-25T18:30:00.000Z"
+      "id": "2",
+      "size": "Small Room",
+      "SmallRoomAvailable": null
     }
+  ],
+  "booking": [
+    {
+      "id": "fac7",
+      "Room": "Large Room",
+      "Timefrom": "10:00 AM",
+      "TimeTo": "9:26 AM",
+      "Date": "2024-04-03T04:30:26.472Z"
+    }
+
+   
+ 
+
+
+  
+   
   ]
 }

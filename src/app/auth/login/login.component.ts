@@ -11,15 +11,13 @@ declare const google: any;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements AfterViewInit {
-
   userdata: any;
-
   constructor(public route: Router, public logindataservice: GoogleloginService) { }
-
   ngAfterViewInit(): void {
+  debugger
     this.initializeGoogle();
   }
-
+// It is use to for render google login
   initializeGoogle(): void {
     google.accounts.id.initialize({
       client_id: '471180406582-pqfv2d35gqq908rsqoppju7onoi0i6un.apps.googleusercontent.com',
@@ -34,8 +32,8 @@ export class LoginComponent implements AfterViewInit {
       size: "medium"
     });
   }
-
-  onGoogleSignIn(response: any): void {
+// It is use to match the data base from the database and navigate to login page
+  onGoogleSignIn(response: any) {
     if (response) {
       debugger
       const payload = this.decodeToken(response.credential);
@@ -51,12 +49,10 @@ export class LoginComponent implements AfterViewInit {
             this.logindataservice.errorMSG("user not found");
           }
         }, (error:any) => {
-         
-    
         });
     } 
   }
-
+// It is function is use to decode the user credential 
   decodeToken(token: any): any {
     debugger
     return JSON.parse(atob(token.split(".")[1]));

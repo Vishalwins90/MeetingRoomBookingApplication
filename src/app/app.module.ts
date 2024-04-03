@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr'
 import { UiModule } from './ui/ui.module';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { DatePipe } from '@angular/common';
 // import { ToastService } from './core/Services/toast.service';
 @NgModule({
   declarations: [
@@ -28,11 +29,12 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     HttpClientModule,
     SocialLoginModule,
     BrowserAnimationsModule,
-    UiModule
+    UiModule,
     
 
   ],
   providers: [
+    DatePipe
     // {
     //   provide: 'SocialAuthServiceConfig',
     //   useValue: {
