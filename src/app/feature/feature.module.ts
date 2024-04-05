@@ -7,6 +7,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { UiModule } from '../ui/ui.module';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     MeetingRoomComponent
@@ -17,8 +18,8 @@ import { DatePipe } from '@angular/common';
     ReactiveFormsModule,
     UiModule,
     NgxMaterialTimepickerModule,
-    DatePipe
-    
+    DatePipe,
+    FormsModule
     
   ]
 })

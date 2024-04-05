@@ -32,7 +32,18 @@ getroomdata(){
 Showerror(message:any){
   this.toastr.error(message)
 }
+  
+roomdataupdate(id:any,data:any){
+  return this.http.patch(this.url3+"/"+id, data)
 
+}
+
+getdatabyId(id: any) {
+  return this.http.get(this.url3 + "/" + id);
+}
+getbookingRoomdata(){
+  return this.http.get(this.url2)
+}
 
 
 successMSG(msg:string) {
