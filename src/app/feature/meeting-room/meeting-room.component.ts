@@ -20,18 +20,18 @@ export class MeetingRoomComponent {
   filterRoom: any
   showtable: boolean = false
   TotalRoom: any
+  bookingData: any
   databyid: any
   showRooomdata: any
   ShowTotalRoom: boolean = false
   allloginuserdata: any;
   allTime: any = [];
-  bookingAccRoom:any
+  bookingAccRoom: any
   displayedColumns: any[] = ['SmallRoomAvailable', 'LargeRoomAvailable', 'TotallargeRoom', 'TotalSmallRoom'];
   constructor(public formbuilder: FormBuilder, public route: Router, public loginservice: GoogleloginService, private datePipe: DatePipe) {
 
   }
   ngOnInit() {
-    debugger
     this.form = this.formbuilder.group({
       Room: ['', [Validators.required]],
       Timefrom: ['', [Validators.required]],
@@ -41,9 +41,11 @@ export class MeetingRoomComponent {
 
     })
 
+    this.deleteExpiredBookings()
     this.loginservice.getroomdata().subscribe((data: any) => {
       this.RoomData = data
     })
+
   }
 
   logout() {
@@ -51,52 +53,57 @@ export class MeetingRoomComponent {
     this.route.navigateByUrl('login')
 
   }
-// Show Meeting Room  Available According to user Select 
+  // Show Meeting Room  Available According to user Select 
   Submit() {
-    debugger
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     } else {
+      debugger
+      const theBigDay = new Date();
+      theBigDay.setHours(parseInt(this.form.value.Timefrom))
+      console.log(theBigDay, "dd")
       this.loginservice.getbookingRoomdata().subscribe((data: any) => {
         this.allloginuserdata = data;
         this.allTime = {
           Timefrom: this.form.value.Timefrom,
           TimeTo: this.form.value.TimeTo
         }
-        let bookingAccRoom = this.allloginuserdata.filter((booking: any) => (booking.Room ==  'Large Room' || booking.Room ==  'Small Room' == this.form.value.Room) && (booking.Timefrom == this.form.value.Timefrom) && (booking.TimeTo == this.form.value.TimeTo))
+        let bookingAccRoom = this.allloginuserdata.filter((booking: any) => (booking.Room == 'Large Room' || booking.Room == 'Small Room' == this.form.value.Room) && (booking.Timefrom == this.form.value.Timefrom) && (booking.TimeTo == this.form.value.TimeTo))
         if (bookingAccRoom.length && (bookingAccRoom[0].Timefrom == this.allTime.Timefrom) && (bookingAccRoom[0].TimeTo == this.allTime.TimeTo)) {
           this.loginservice.Showerror("Sorry no room Available for this time beacause all the are occupied")
         }
         else {
           if (this.form.value.Room === 'Large Room') {
             debugger
-          if ( this.form.value.SelectTotalRoom >this.RoomData[0].TotallargeRoom){
-            return this.loginservice.Showerror("Please Select less  Room beacse all the room is not Avaiable ")
-          }
-          else {
-            const totalLargeRoom = parseInt(this.RoomData[0].TotallargeRoom);
-            const selectedRoom = parseInt(this.form.value.SelectTotalRoom);
-            this.showRooomdata = totalLargeRoom - selectedRoom;
-            this.RoomData[0].TotallargeRoom = this.showRooomdata;
-            const data = {
-              TotallargeRoom: this.RoomData[0].TotallargeRoom
-            };
-            this.loginservice.roomdataupdate(this.RoomData[0].id, data).subscribe((data: any) => {
-              console.log(data);
-            });
-            this.loginservice.postdata(this.form.value).subscribe((data: any) => {
-              console.log(data);
-            });
-            this.ShowTotalRoom = false;
-            this.showtable = true;
-            this.form.reset();
-           return  this.loginservice.showSuccess("Your Booking is done")
-          }
+            if (this.form.value.SelectTotalRoom > this.RoomData[0].TotallargeRoom) {
+              return this.loginservice.Showerror("Sorry All alllargeRoom is not Aviable this time please select less Room")
+            }
+            else {
+              const totalLargeRoom = parseInt(this.RoomData[0].TotallargeRoom);
+              const selectedRoom = parseInt(this.form.value.SelectTotalRoom);
+              this.showRooomdata = totalLargeRoom - selectedRoom;
+              this.RoomData[0].TotallargeRoom = this.showRooomdata;
+              const data = {
+                TotallargeRoom: this.RoomData[0].TotallargeRoom
+              };
+              this.loginservice.roomdataupdate(this.RoomData[0].id, data).subscribe((data: any) => {
+                console.log(data);
+              });
+              this.loginservice.postdata(this.form.value).subscribe((data: any) => {
+                console.log(data);
+              });
+              this.ShowTotalRoom = false;
+              this.showtable = true;
+              this.form.reset();
+              return this.loginservice.showSuccess("Your Booking is done")
+            }
 
           }
           else if (this.form.value.Room === 'Small Room') {
-            if (this.form.value.SelectTotalRoom >=this.RoomData[1].TotalSmallRoom){
-              return this.loginservice.Showerror("Please Select less  Room beacse all the room is not Avaiable ")
+            debugger
+            if (this.form.value.SelectTotalRoom > this.RoomData[1].TotalSmallRoom) {
+              return this.loginservice.Showerror("Sorry All SmallRoom is not Aviable this time please select less Room")
             }
             else {
               const totalSmallRoom = parseInt(this.RoomData[1].TotalSmallRoom);
@@ -113,26 +120,25 @@ export class MeetingRoomComponent {
             }
             this.loginservice.postdata(this.form.value).subscribe((data: any) => {
               console.log(data);
-           
+
             });
             this.ShowTotalRoom = false;
             this.form.reset();
-        return  this.loginservice.showSuccess("Your Booking is done")
+            return this.loginservice.showSuccess("Your Booking is done")
           }
-            }
-      
-     
+        }
+
+
       })
 
     }
   }
 
-// get current time Automitcally select by using date
   getCurrentTime() {
     const currentDate = new Date();
-    return this.datePipe.transform(currentDate, 'HH:mm') ?? '';
+    return this.datePipe.transform(currentDate, 'hh:mm a') ?? '';
   }
-// show large Room Aviabale and Smalll Room Aviabale according to dropdown select
+  // show large Room Aviabale and Smalll Room Aviabale according to dropdown select
   ShowRoomAccordingSelect(index: any) {
     console.log(this.form.value.Room)
     if (this.form.value.Room === 'Large Room') {
@@ -151,7 +157,51 @@ export class MeetingRoomComponent {
   getBookingFormStyle() {
     return this.showtable ? 'position: absolute; margin-left: 63px; top: -124px;' : 'position: absolute; margin-left: 63px; top: -268px;';
   }
+
+
+  deleteExpiredBookings() {
+    const currentTime = new Date();
+    this.loginservice.getbookingRoomdata().subscribe((data: any) => {
+      this.bookingData = data;
+      this.bookingData.forEach((booking: any,index:any) => {
+        // const bookingTimeTo = new Date(booking.Date);
+        const bookingTimeTo = new Date(booking.Date);
+        // bookingTimeTo.setHours(parseInt(booking.TimeTo.split(":")[0]));
+        bookingTimeTo.setHours(parseInt(booking.TimeTo.split(":")[0]));
+        bookingTimeTo.setMinutes(parseInt(booking.TimeTo.split(":")[1]))
+        if (currentTime >bookingTimeTo) {
+          debugger
+          this.loginservice.deleteBooking(booking.id).subscribe((data: any) => {
+            if (data.Room == "Large Room") {
+              debugger
+              const totalLargeRoom = parseInt(this.RoomData[0].TotallargeRoom);
+              let selectedRoom = parseInt(data.SelectTotalRoom)
+              let addoldroom: any = selectedRoom + totalLargeRoom
+              this.RoomData[0].TotallargeRoom = addoldroom
+              const alldata: any = {
+                TotallargeRoom: this.RoomData[0].TotallargeRoom
+              }
+              this.loginservice.roomdataupdate(this.RoomData[0].id, alldata).subscribe((data: any) => {
+                console.log(data);
+              });
+            }
+            else if (data.Room == "Small Room") {
+              const TotalSmallRoom = parseInt(this.RoomData[1].TotalSmallRoom);
+              let selectedRoom = parseInt(data.SelectTotalRoom)
+              let addoldroom = selectedRoom + TotalSmallRoom
+              this.RoomData[1].TotalSmallRoom = addoldroom
+              const alldata: any = {
+                TotalSmallRoom: this.RoomData[1].TotalSmallRoom
+              }
+              this.loginservice.roomdataupdate(this.RoomData[1].id, alldata).subscribe((data: any) => {
+                console.log(data);
+              });
+            }
+             this.bookingData.splice(index, 1);
+          });
+        }
+      });
+    });
+  }
+
 }
-
-
-

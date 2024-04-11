@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Route, Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 declare var gapi : any;
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,9 @@ getbookingRoomdata(){
   return this.http.get(this.url2)
 }
 
+getbookingRoomdataId(id:any){
+  return this.http.get(this.url2, + "/" + id)
+}
 
 successMSG(msg:string) {
   this.snackBar.open(msg,'',{
@@ -58,5 +62,14 @@ errorMSG(msg:string, duration?:number) {
 }
 
 
+deleteBooking(bookingId: any) {
+  debugger
+  const url = `${this.url2}/${bookingId}`; 
+  return this.http.delete<any>(url);
+}
 
+// delete(id: any): Observable<any> {
+//   const deleteUrl = `${this.url3}/${id}`;
+//   return this.http.delete<any>(deleteUrl);
+// }
 }
