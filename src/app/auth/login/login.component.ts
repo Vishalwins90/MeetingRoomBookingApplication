@@ -53,7 +53,6 @@ export class LoginComponent implements AfterViewInit {
   }
 // It is function is use to decode the user credential 
   decodeToken(token: any): any {
-
     return JSON.parse(atob(token.split(".")[1]));
   }
 }
