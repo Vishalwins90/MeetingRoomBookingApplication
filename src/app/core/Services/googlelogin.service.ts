@@ -62,8 +62,8 @@ errorMSG(msg:string, duration?:number) {
 }
 
 
-deleteBooking(bookingId: any) {
-  debugger
+deleteBooking(bookingId: any) :Observable<any>{
+  
   const url = `${this.url2}/${bookingId}`; 
   return this.http.delete<any>(url);
 }

@@ -37,33 +37,16 @@
                     <form [formGroup]="form">
                         <div class="form-group">
                             <mat-form-field appearance="fill" style="width: 350px;">
-                                <mat-label>Room Size</mat-label>
-                                <mat-select formControlName="Room">
-                                    <mat-option *ngFor="let userdata of RoomData" [value]="userdata.size"
-                                        (click)="ShowRoomAccordingSelect($event)">
-                                        {{userdata.size}}
-                                    </mat-option>
-                                </mat-select>
+                                <mat-label>Select Date</mat-label>
+                                <input   (dateChange)="onDateChange($event)" formControlName="Date" matInput [matDatepicker]="dp1">
+                                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                                <mat-datepicker #dp1></mat-datepicker>
                             </mat-form-field>
-                            <span *ngIf="form.controls['Room'].hasError('required') && form.controls['Room'].touched"
-                                style="color: red;">Please
-                                Select Room Size</span>
+                            <span style="color: red;"
+                                *ngIf="form.controls['Date'].hasError('required') && form.controls['Date'].touched">Select
+                                Date</span>
+                          
                         </div>
-                        <div class="form-group" *ngIf="ShowTotalRoom">
-                            <mat-form-field appearance="fill" style="width: 350px;">
-                                <mat-label>How many Room You wants Book</mat-label>
-                                <mat-select formControlName="SelectTotalRoom">
-                                    <mat-option *ngFor="let userdata of TotalRoom" [value]="userdata">
-                                        {{userdata}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <span
-                                *ngIf="form.controls['SelectTotalRoom'].hasError('required') && form.controls['Room'].touched"
-                                style="color: red;">Please
-                                Select Room</span>
-                        </div>
-
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -93,22 +76,43 @@
                                         End Time</span>
                                 </div>
                             </div>
+                         
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <mat-form-field appearance="fill" style="width: 350px;">
-                                        <mat-label>Select Date</mat-label>
-                                        <input formControlName="Date" matInput [matDatepicker]="dp1">
-                                        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-                                        <mat-datepicker #dp1></mat-datepicker>
+                                        <mat-label>Room Size</mat-label>
+                                        <mat-select formControlName="Room">
+                                            <mat-option *ngFor="let userdata of RoomData" [value]="userdata.size"
+                                                (click)="ShowRoomAccordingSelect($event)">
+                                                {{userdata.size}}
+                                            </mat-option>
+                                        </mat-select>
                                     </mat-form-field>
-                                    <span style="color: red;"
-                                        *ngIf="form.controls['Date'].hasError('required') && form.controls['Date'].touched">Select
-                                        Date</span>
+                                    <span *ngIf="form.controls['Room'].hasError('required') && form.controls['Room'].touched"
+                                        style="color: red;">Please
+                                        Select Room Size</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group" *ngIf="ShowTotalRoom">
+                            <mat-form-field appearance="fill" style="width: 350px;">
+                                <mat-label>How many Room You wants Book</mat-label>
+                                <mat-select formControlName="SelectTotalRoom">
+                                    <mat-option *ngFor="let userdata of TotalRoom" [value]="userdata">
+                                        {{userdata}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <span
+                                *ngIf="form.controls['SelectTotalRoom'].hasError('required') && form.controls['Room'].touched"
+                                style="color: red;">Please
+                                Select Room</span>
+                        </div>
+
+                    
+                     
                         
                         <div class="form-btn" style="margin-left: 119px">
                             <button class="submit-btn" (click)="Submit()">Book Room</button>

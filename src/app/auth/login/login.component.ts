@@ -14,7 +14,7 @@ export class LoginComponent implements AfterViewInit {
   userdata: any;
   constructor(public route: Router, public logindataservice: GoogleloginService) { }
   ngAfterViewInit(): void {
-  debugger
+  
     this.initializeGoogle();
   }
 // It is use to for render google login
@@ -32,10 +32,9 @@ export class LoginComponent implements AfterViewInit {
       size: "medium"
     });
   }
-// It is use to match the data base from the database and navigate to login page
+// It is use to match the data base from the database and navigate to dashboard
   onGoogleSignIn(response: any) {
     if (response) {
-      debugger
       const payload = this.decodeToken(response.credential);
       this.logindataservice.googlogindata()
         .subscribe((data: any) => {
@@ -54,7 +53,7 @@ export class LoginComponent implements AfterViewInit {
   }
 // It is function is use to decode the user credential 
   decodeToken(token: any): any {
-    debugger
+
     return JSON.parse(atob(token.split(".")[1]));
   }
 }

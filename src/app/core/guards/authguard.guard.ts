@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterState
 import { Observable } from 'rxjs';
 
 export const authguardGuard: CanActivateFn = (route, state) => {
-  debugger
+  
   return true;
 };
 @Injectable({
