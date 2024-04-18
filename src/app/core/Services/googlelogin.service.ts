@@ -35,7 +35,7 @@ Showerror(message:any){
 }
   
 roomdataupdate(id:any,data:any){
-  return this.http.patch(this.url3+"/"+id, data)
+  return this.http.patch(this.url2+"/"+id, data)
 
 }
 
@@ -62,14 +62,13 @@ errorMSG(msg:string, duration?:number) {
 }
 
 
-deleteBooking(bookingId: any) :Observable<any>{
-  
+deleteBooking(bookingId: any) {
   const url = `${this.url2}/${bookingId}`; 
   return this.http.delete<any>(url);
 }
 
-// delete(id: any): Observable<any> {
-//   const deleteUrl = `${this.url3}/${id}`;
-//   return this.http.delete<any>(deleteUrl);
-// }
+getbookingRoomdataByDate(date: any) {
+  // Assuming your API endpoint for fetching booking data by date is '/api/bookings'
+  return this.http.get(`/api/bookings?date=${date}`);
+}
 }

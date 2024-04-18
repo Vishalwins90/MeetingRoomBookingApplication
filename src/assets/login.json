@@ -25,76 +25,36 @@
   ],
   "booking": [
     {
-      "id": "9035",
+      "id": "e676",
       "Room": "Large Room",
-      "Timefrom": "4:02 PM",
-      "TimeTo": "6:03 PM",
-      "Date": "2024-04-12",
-      "SelectTotalRoom": 1
+      "Timefrom": "6:51 PM",
+      "TimeTo": "7:51 PM",
+      "Date": "2024-04-18",
+      "AvailableRoom": 13
     },
     {
-      "id": "b839",
+      "id": "ea58",
       "Room": "Large Room",
-      "Timefrom": "5:45 PM",
-      "TimeTo": "5:45 PM",
-      "Date": "2024-04-11",
-      "SelectTotalRoom": 5
+      "Timefrom": "5:51 PM",
+      "TimeTo": "8:51 PM",
+      "Date": "2024-04-18",
+      "bookedRoom": 2
     },
     {
-      "id": "0060",
+      "id": "a15e",
       "Room": "Large Room",
-      "Timefrom": "6:00 PM",
-      "TimeTo": "7:59 PM",
-      "Date": "2024-04-11"
+      "Timefrom": "5:55 PM",
+      "TimeTo": "7:55 PM",
+      "Date": "2024-04-19",
+      "AvailableRoom": 13
     },
     {
-      "id": "285b",
+      "id": "5c13",
       "Room": "Large Room",
-      "Timefrom": "6:00 PM",
-      "TimeTo": "7:59 PM",
-      "Date": "2024-04-11"
-    },
-    {
-      "id": "c706",
-      "Room": "Large Room",
-      "Timefrom": "6:00 PM",
-      "TimeTo": "7:59 PM",
-      "Date": "2024-04-11"
-    },
-    {
-      "id": "8c3d",
-      "Room": "Large Room",
-      "Timefrom": "6:00 PM",
-      "TimeTo": "7:59 PM",
-      "Date": "2024-04-11"
-    },
-    {
-      "id": "e5ca",
-      "Room": "Large Room",
-      "Timefrom": "6:00 PM",
-      "TimeTo": "7:59 PM",
-      "Date": "2024-04-11"
-    },
-    {
-      "id": "6c2f",
-      "Room": "Large Room",
-      "Timefrom": "6:00 PM",
-      "TimeTo": "7:59 PM",
-      "Date": "2024-04-11"
-    },
-    {
-      "id": "d365",
-      "Room": "Large Room",
-      "Timefrom": "6:10 PM",
-      "TimeTo": "7:10 PM",
-      "Date": "2024-04-12"
-    },
-    {
-      "id": "a65f",
-      "Room": "",
-      "Timefrom": "",
-      "TimeTo": "",
-      "Date": "2024-04-12"
+      "Timefrom": "7:57 PM",
+      "TimeTo": "7:57 PM",
+      "Date": "2024-04-18",
+      "bookedRoom": 2
     }
   ]
 }
